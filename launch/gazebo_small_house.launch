@@ -7,7 +7,7 @@
     <!-- arguments -->
     <arg name="world_file" default="$(find ai3-roai-project)/worlds/small_house.world"/>
     <arg name="gui" default="true"/>
-    <arg name="verbose" default="true"/>
+    <arg name="verbose" default="false"/>
 
     <!-- Launch gazebo world -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
