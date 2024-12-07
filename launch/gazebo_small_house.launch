@@ -1,0 +1,25 @@
+<launch>
+    
+    <!-- environment variables -->
+    <env name="GAZEBO_MODEL_PATH" value="$(find ai3-roai-project)/worlds/models"/>
+    <env name="GAZEBO_RESOURCE_PATH" value="$(find ai3-roai-project)/worlds"/>
+
+    <!-- arguments -->
+    <arg name="world_file" default="$(find ai3-roai-project)/worlds/small_house.world"/>
+    <arg name="gui" default="true"/>
+    <arg name="verbose" default="false"/>
+
+    <!-- Launch gazebo world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_file)" />
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="verbose" value="$(arg verbose)"/>
+    </include>
+
+    <!-- Spawn mir100 robot -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find ai3-roai-project)/mir100/mir.urdf.xacro" />
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen" 
+      args="-param robot_description -urdf -model mir -x -3.5 -y -4.5 -z 0.1 -Y 1.58"/>
+</launch>
