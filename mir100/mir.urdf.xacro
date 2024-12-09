@@ -20,6 +20,7 @@
 
   <!-- Custom camera -->
   <xacro:include filename="$(find ai3-roai-project)/mir100/camera.urdf.xacro" />
+  <xacro:include filename="$(find ai3-roai-project)/mir100/lidar.urdf.xacro" />
 
   <!-- instead of the controller_plugin_gazebo, you can use the diffdrive controller like this:
     <xacro:diff_controller_plugin_gazebo prefix=""
@@ -28,4 +29,12 @@
       wheel_separation="${2*mir_act_wheel_dy}"
       wheel_radius="${mir_act_wheel_radius}"/>
   -->
+
+  <!-- <xacro:include filename="inertial_macros.xacro"/> -->
+
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+
+
 </robot>
