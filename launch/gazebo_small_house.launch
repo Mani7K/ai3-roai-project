@@ -26,8 +26,10 @@
 
 
     <!-- Robot State Publisher -->
-    <!-- Needed to display Laser Scan in RVIZ -->
+    <!-- Needed to display Robot RVIZ -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
         <param name="robot_description" command="$(find xacro)/xacro $(find ai3-roai-project)/mir100/mir.urdf.xacro" />
     </node>
+
+
 </launch>
