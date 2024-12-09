@@ -26,6 +26,15 @@ After that, we can start the typical ros workflow:
 3. `source devel/setup.bash`
 4. `roslaunch ai3-roai-project gazebo_small_house.launch`
 
-You should now see a running gazebo instance, showing the small_house world including a mir100 with a camera (small red box) mounted.
+You should now see a running gazebo instance, showing the small_house world including a mir100 with a camera (small red box) and a laser scanner (small red cylinder) mounted.
 
 The image gets published to the topic `/image_raw`. It can be visualized e.g. by using rviz.
+The laser scan data gets published to the topic `/scan`. It can be visualized using rviz as well. 
+
+RVIZ Laserscan visualization example: 
+1. Add => RobotModel
+2. Global Options: Set `Fixed Frame` to `base_link`
+3. Add => LaserScan => Set `Topic` in the `LaserScan`-Tab to `/scan`
+
+
+
