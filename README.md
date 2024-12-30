@@ -1,13 +1,16 @@
 # AI3 ROAI Project
 
 ## Prerequisites
-* Docker-ROS https://github.com/TW-Robotics/Docker-ROS/tree/master
+
+- Docker-ROS https://github.com/TW-Robotics/Docker-ROS/tree/master
 
 ## Startup
+
 This project represents a ros package.\
 When using the docker container described in prerequisites, clone/copy this repository into the `Docker-ROS/catkin_ws/src` directory.
 
 Your folder structure should look like this:
+
 ```
 Docker-ROS/
 └── catkin_ws/
@@ -21,20 +24,22 @@ To install all required dependencies, which are currently not available inside t
 `/home/fhtw_user/catkin_ws/src/fhtw/ai3-roai-project/scripts/dependencies.sh`
 
 After that, we can start the typical ros workflow:
+
 1. Navigate to `/home/fhtw_user/catkin_ws/`
 2. Run `catkin_make`
 3. `source devel/setup.bash`
 4. `roslaunch ai3-roai-project gazebo_small_house.launch`
+5. `roslaunch ai3-roai-project slam.launch`
+   - This will launch an instance of the mapping node and a preconfigured rviz instance
 
 You should now see a running gazebo instance, showing the small_house world including a mir100 with a camera (small red box) and a laser scanner (small red cylinder) mounted.
 
 The image gets published to the topic `/image_raw`. It can be visualized e.g. by using rviz.
-The laser scan data gets published to the topic `/scan`. It can be visualized using rviz as well. 
+The laser scan data gets published to the topic `/scan`. It can be visualized using rviz as well.
+When launching the SLAM node a map is published to the topic `/map`, its visualized in the preconfigured rviz instance.
 
-RVIZ Laserscan visualization example: 
+RVIZ Laserscan visualization example:
+
 1. Add => RobotModel
 2. Global Options: Set `Fixed Frame` to `base_link`
 3. Add => LaserScan => Set `Topic` in the `LaserScan`-Tab to `/scan`
-
-
-
