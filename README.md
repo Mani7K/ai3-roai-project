@@ -28,11 +28,14 @@ After that, we can start the typical ros workflow:
 1. Navigate to `/home/fhtw_user/catkin_ws/`
 2. Run `catkin_make`
 3. `source devel/setup.bash`
-4. `roslaunch ai3-roai-project gazebo_small_house.launch`
+4. Start a world
+   - Option A: `roslaunch ai3-roai-project gazebo_small_house.launch`
+   - Option B: `roslaunch ai3-roai-project maze.launch`
+     - This is a small map with a few chairs, gazebo runs much smoother using this world
 5. `roslaunch ai3-roai-project slam.launch`
    - This will launch an instance of the mapping node and a preconfigured rviz instance
 
-You should now see a running gazebo instance, showing the small_house world including a mir100 with a camera (small red box) and a laser scanner (small red cylinder) mounted.
+You should now see a running gazebo instance, showing either the small_house or maze world including a mir100 with a camera (small red box) and a laser scanner (small red cylinder) mounted.
 
 The image gets published to the topic `/image_raw`. It can be visualized e.g. by using rviz.
 The laser scan data gets published to the topic `/scan`. It can be visualized using rviz as well.
