@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+  <env name="GAZEBO_MODEL_PATH" value="$(find ai3-roai-project)/worlds/models" />
+  <env name="GAZEBO_RESOURCE_PATH" value="$(find ai3-roai-project)/worlds" />
+
+  <!-- arguments -->
+  <arg name="world_file" default="$(find ai3-roai-project)/worlds/maze_chairs.world" />
+  <arg name="gui" default="true" />
+  <arg name="verbose" default="false" />
+  <arg name="controller" default="true" />
+
+
+  <group>
+    <group>
+      <remap from="joint_states" to="mir/joint_states" />
+      <remap from="mobile_base_controller/cmd_vel" to="cmd_vel" />
+      <remap from="mobile_base_controller/odom" to="odom" />
+
+      <!-- Launch gazebo world -->
+      <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_file)" />
+        <arg name="paused" value="false" />
+        <arg name="use_sim_time" value="true" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="verbose" value="$(arg verbose)" />
+      </include>
+    </group>
+
+    <!-- spawn robot and bring up controllers etc. -->
+    <include file="$(find ai3-roai-project)/launch/mir.launch">
+      <arg name="controller" value="$(arg controller)" />
+    </include>
+  </group>
+
+</launch>
