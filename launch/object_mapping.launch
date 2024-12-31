@@ -1,0 +1,31 @@
+<launch>
+    <!-- Load parameters -->
+    <rosparam command="load" file="$(find ai3-roai-project)/config/object_mapping_params.yaml" />
+
+    <!-- Start SLAM/gmapping -->
+    <include file="$(find ai3-roai-project)/launch/slam.launch" />
+
+    <!-- TODO: Inspect once detector is implemented -->
+    <!-- Start chair detection node -->
+    <node name="chair_detector" pkg="ai3-roai-project" type="chair_detector_node" output="screen">
+        <!-- Add any necessary parameters for the chair detector -->
+    </node>
+
+    <!-- Start chair mapper node -->
+    <node name="object_mapper" pkg="your_package" type="object_mapper.py" output="screen">
+        <param name="image_center" value="320" />
+        <param name="center_threshold" value="10" />
+        <param name="angular_speed" value="0.2" />
+        <param name="min_chair_distance" value="0.5" />
+        <param name="min_table_distance" value="1.0" />
+        <param name="chair_size" value="2" />
+        <param name="table_size" value="4" />
+    </node>
+
+    <!-- Start explorer node -->
+    <node name="explorer" pkg="ai3-roai-project" type="explorer.py" output="screen">
+        <param name="angular_speed" value="0.2" />
+        <param name="linear_speed" value="0.2" />
+        <param name="exploration_time" value="2.0" />
+    </node>
+</launch>
