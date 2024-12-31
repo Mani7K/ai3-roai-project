@@ -1,0 +1,49 @@
+<launch>
+    <arg name="controller" default="true" />
+    <arg name="prefix" default="" />
+
+    <param name="robot_description"
+        command="$(find xacro)/xacro $(find ai3-roai-project)/mir100/mir.urdf.xacro" />
+
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-param robot_description -urdf -model mir -x -3.5 -y -4.5 -z 0.1 -Y 1.58" />
+
+    <!-- Load ros_control controller configurations -->
+    <rosparam file="$(find mir_description)/config/joint_state_controller.yaml" command="load" />
+    <rosparam file="$(find mir_description)/config/diffdrive_controller.yaml" command="load"
+        subst_value="true" />
+
+    <!-- Start the controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen"
+        args="joint_state_controller mobile_base_controller" />
+
+    <!-- EKF -->
+    <include file="$(find mir_gazebo)/launch/includes/ekf.launch.xml" />
+
+    <!-- Add passive + mimic joints to joint_states topic -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <rosparam param="source_list">[mir/joint_states]</rosparam>
+        <param name="rate" value="200.0" />
+    </node>
+
+    <!-- Robot state publisher -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        output="screen" />
+
+    <include file="$(find ai3-roai-project)/launch/controller.launch" />
+
+    <!-- create combined scan topic (like on real MiR) -->
+    <node pkg="topic_tools" type="relay" name="b_scan_relay" args="b_scan scan" />
+    <node pkg="topic_tools" type="relay" name="f_scan_relay" args="f_scan scan" />
+
+    <node name="b_rep117_laser_filter" pkg="mir_driver" type="rep117_filter.py" output="screen">
+        <remap from="scan" to="b_scan" />
+        <remap from="scan_filtered" to="b_scan_rep117" />
+    </node>
+
+    <node name="f_rep117_laser_filter" pkg="mir_driver" type="rep117_filter.py" output="screen">
+        <remap from="scan" to="f_scan" />
+        <remap from="scan_filtered" to="f_scan_rep117" />
+    </node>
+
+</launch>

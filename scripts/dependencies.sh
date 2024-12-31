@@ -1,5 +1,11 @@
-# this file contains a script to load all dependencies, which are not already installed in the docker container
-# later on we should adapt the dockerfile to add those
-
 sudo apt update
-sudo apt install ros-noetic-mir-robot -y
+sudo apt-get update
+sudo apt install -y \
+    ros-noetic-mir-robot \
+    ros-noetic-gmapping \
+    ros-noetic-navigation \
+    ros-noetic-map-server \
+    ros-noetic-amcl \
+    ros-noetic-teleop-twist-keyboard \
+    ros-noetic-tf2-tools \
+    ros-noetic-tf2-ros 

@@ -1,0 +1,10 @@
+object_mapper:
+  image_center: 320
+  center_threshold: 10
+  angular_speed: 0.2
+  min_chair_distance: 0.5
+
+explorer:
+  angular_speed: 0.2
+  linear_speed: 0.2
+  exploration_time: 2.0
