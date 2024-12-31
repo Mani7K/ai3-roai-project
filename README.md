@@ -34,8 +34,8 @@ After that, we can start the typical ros workflow:
      - This is a small map with a few chairs, gazebo runs much smoother using this world
 5. `roslaunch ai3-roai-project slam.launch`
    - This will launch an instance of the mapping node and a preconfigured rviz instance
-6. `roslaunch ai3-roai-project exploration.launch`
-   - This will start a node that explores the world depending on the current map and scan
+6. `roslaunch ai3-roai-project object_mapping.launch`
+   - This will start a node that explores and maps the world. it subscribes to the `/object_detection` topic and will place detected objects on the map
 
 You should now see a running gazebo instance, showing either the small_house or maze world including a mir100 with a camera (small red box) and a laser scanner (small red cylinder) mounted.
 
