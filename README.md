@@ -43,6 +43,19 @@ The image gets published to the topic `/image_raw`. It can be visualized e.g. by
 The laser scan data gets published to the topic `/scan`. It can be visualized using rviz as well.
 When launching the SLAM node a map is published to the topic `/map`, its visualized in the preconfigured rviz instance.
 
+#### Object Detection
+The object detection node publishes only if a chair or table is detected. The published message is an array of json object with the following structure:
+
+```json
+[
+  {
+    "class": "string",          // Detected object class
+    "confidence": float,        // Confidence score (0.0 to 1.0)
+    "bbox": [int, int, int, int] // Bounding box [x, y, width, height]
+  },
+  ...
+]
+
 RVIZ Laserscan visualization example:
 
 1. Add => RobotModel
