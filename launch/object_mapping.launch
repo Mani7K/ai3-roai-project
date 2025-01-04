@@ -5,10 +5,9 @@
     <!-- Start SLAM/gmapping -->
     <include file="$(find ai3-roai-project)/launch/slam.launch" />
 
-    <!-- TODO: Inspect once detector is implemented -->
     <!-- Start chair detection node -->
-    <node name="chair_detector" pkg="ai3-roai-project" type="chair_detector_node" output="screen">
-        <!-- Add any necessary parameters for the chair detector -->
+    <node name="object_detection_node" pkg="ai3-roai-project" type="object_detection_json.py" output="screen">
+        <!-- Specify any parameters if needed -->
     </node>
 
     <!-- Start chair mapper node -->
@@ -29,3 +28,4 @@
         <param name="exploration_time" value="2.0" />
     </node>
 </launch>
+
