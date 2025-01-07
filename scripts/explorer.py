@@ -1,10 +1,9 @@
-# explorer.py
 #!/usr/bin/env python
 
 import rospy
-import math
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
+from sensor_msgs.msg import LaserScan
 
 class Explorer:
     def __init__(self):
@@ -15,62 +14,65 @@ class Explorer:
         
         # Subscribers
         rospy.Subscriber('/object_mapper/state', String, self.state_callback)
+        rospy.Subscriber('/scan', LaserScan, self.scan_callback)
         
         # Parameters
-        self.angular_speed = rospy.get_param('~angular_speed', 0.2)
         self.linear_speed = rospy.get_param('~linear_speed', 0.2)
-        self.exploration_time = rospy.get_param('~exploration_time', 2.0)
+        self.angular_speed = rospy.get_param('~angular_speed', 0.5)
+        self.min_front_distance = rospy.get_param('~min_front_distance', 0.5)
         
         # State
         self.mapper_state = 'IDLE'
-        self.exploring = False
-        self.rotation_accumulated = 0.0
-        self.last_rotation_time = rospy.Time.now()
-        self.full_rotation_threshold = 2 * math.pi
+        self.latest_scan = None
         
     def state_callback(self, msg):
         self.mapper_state = msg.data
-        if self.mapper_state != 'IDLE':
-            self.exploring = False
+        
+    def scan_callback(self, msg):
+        self.latest_scan = msg
+    
+    def get_front_distance(self):
+        """Get the minimum distance in front of the robot"""
+        if not self.latest_scan:
+            return None
             
+        # Get the middle portion of the scan (front of robot)
+        ranges = self.latest_scan.ranges
+        center_index = len(ranges) // 2
+        front_ranges = ranges[center_index-20:center_index+20]  # Look at 40 degrees arc in front
+        
+        # Filter out invalid readings
+        valid_ranges = [r for r in front_ranges if r != float('inf')]
+        
+        if valid_ranges:
+            return min(valid_ranges)
+        return None
+
     def explore(self):
-        """Basic exploration strategy"""
+        """Simple exploration: move forward, turn left when obstacle detected"""
         if self.mapper_state != 'IDLE':
+            # Stop if mapper is active
+            self.cmd_vel_pub.publish(Twist())
             return
             
-        if not self.exploring:
-            self.start_rotation()
-        else:
-            self.continue_rotation()
+        front_distance = self.get_front_distance()
+        if front_distance is None:
+            # No valid reading, stop for safety
+            self.cmd_vel_pub.publish(Twist())
+            return
             
-    def start_rotation(self):
-        self.exploring = True
-        self.rotation_accumulated = 0.0
-        self.last_rotation_time = rospy.Time.now()
-        
-    def continue_rotation(self):
-        current_time = rospy.Time.now()
-        dt = (current_time - self.last_rotation_time).to_sec()
-        self.rotation_accumulated += self.angular_speed * dt
-        self.last_rotation_time = current_time
-        
-        if self.rotation_accumulated >= self.full_rotation_threshold:
-            self.move_forward()
-        else:
-            twist = Twist()
-            twist.angular.z = self.angular_speed
-            self.cmd_vel_pub.publish(twist)
-            
-    def move_forward(self):
-        """Move forward for a bit, then restart rotation"""
         twist = Twist()
-        twist.linear.x = self.linear_speed
+        
+        if front_distance < self.min_front_distance:
+            # Wall ahead, turn left
+            rospy.loginfo(f"Wall detected at {front_distance}m, turning left")
+            twist.angular.z = self.angular_speed  # Positive for left turn
+        else:
+            # No wall, move forward
+            twist.linear.x = self.linear_speed
+            
         self.cmd_vel_pub.publish(twist)
-        
-        rospy.Timer(rospy.Duration(self.exploration_time), 
-                   lambda _: self.start_rotation(), 
-                   oneshot=True)
-        
+
     def run(self):
         rate = rospy.Rate(10)  # 10 Hz
         while not rospy.is_shutdown():
