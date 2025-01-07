@@ -3,9 +3,10 @@ Panels:
     Help Height: 70
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /MarkerArray1
       Splitter Ratio: 0.5
-    Tree Height: 931
+    Tree Height: 924
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -87,6 +88,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        base_laser_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_link:
           Alpha: 1
           Show Axes: false
@@ -150,11 +156,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        laser_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         left_wheel_link:
           Alpha: 1
           Show Axes: false
@@ -195,6 +196,14 @@ Visualization Manager:
       Transport Hint: raw
       Unreliable: false
       Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: object_markers
+      Name: MarkerArray
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -202,12 +211,15 @@ Visualization Manager:
     Fixed Frame: map
     Frame Rate: 30
   Name: root
-  Tools: ~
+  Tools:
+    - Class: rviz/MoveCamera
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
   Value: true
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10
+      Distance: 15.878829956054688
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -215,27 +227,27 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 3.100248098373413
+        Y: -1.1934794187545776
+        Z: 1.7946035861968994
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7853981852531433
+      Pitch: 0.7597963809967041
       Target Frame: <Fixed Frame>
-      Yaw: 0.7853981852531433
+      Yaw: 1.3953980207443237
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1369
+  Height: 1360
   Hide Left Dock: false
   Hide Right Dock: false
   Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd00000001000000000000015600000503fc0200000002fb000000100044006900730070006c006100790073010000003b00000424000000c700fffffffb0000000a0049006d0061006700650100000465000000d90000001600ffffff000008a40000050300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
-  Width: 2560
-  X: 0
-  Y: 23
+  QMainWindow State: 000000ff00000000fd000000010000000000000156000004fafc0200000002fb000000100044006900730070006c006100790073010000003b0000041d000000c700fffffffb0000000a0049006d006100670065010000045e000000d70000001600ffffff000003a2000004fa00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 1278
+  X: 1
+  Y: 31
