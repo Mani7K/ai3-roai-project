@@ -2,7 +2,7 @@
   <world name='default'>
     <gui fullscreen='0'>
       <camera name='gzclient_camera'>
-        <pose>-13.4224 15.4747 24.3835 0 1.0498 -1.06082</pose>
+        <pose>20.441 23.4751 50.0059 -0 1.0938 -1.80082</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -352,171 +352,6 @@
       </link>
       <pose>-8.27094 1.91665 0.03665 0 -0 0</pose>
     </model>
-    <model name='ChairD_01_001'>
-      <frame name='aws_robomaker_residential_ChairD_01::__model__' attached_to='aws_robomaker_residential_ChairD_01::link'>
-        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
-      </frame>
-      <link name='aws_robomaker_residential_ChairD_01::link'>
-        <inertial>
-          <mass>4.5</mass>
-          <inertia>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyz>0</iyz>
-            <ixx>0.217</ixx>
-            <iyy>0.217</iyy>
-            <izz>0.067</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>file://models/aws_robomaker_residential_ChairD_01/meshes/aws_ChairD_01_collision.DAE</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>file://models/aws_robomaker_residential_ChairD_01/meshes/aws_ChairD_01_visual.DAE</uri>
-            </mesh>
-          </geometry>
-          <meta>
-            <layer>1</layer>
-          </meta>
-        </visual>
-        <pose relative_to='aws_robomaker_residential_ChairD_01::__model__'>0 0 0 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>-1.38078 4.10446 0 0 -0 0</pose>
-    </model>
-    <model name='ChairD_01_002'>
-      <frame name='aws_robomaker_residential_ChairD_01::__model__' attached_to='aws_robomaker_residential_ChairD_01::link'>
-        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
-      </frame>
-      <link name='aws_robomaker_residential_ChairD_01::link'>
-        <inertial>
-          <mass>4.5</mass>
-          <inertia>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyz>0</iyz>
-            <ixx>0.217</ixx>
-            <iyy>0.217</iyy>
-            <izz>0.067</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>file://models/aws_robomaker_residential_ChairD_01/meshes/aws_ChairD_01_collision.DAE</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>file://models/aws_robomaker_residential_ChairD_01/meshes/aws_ChairD_01_visual.DAE</uri>
-            </mesh>
-          </geometry>
-          <meta>
-            <layer>1</layer>
-          </meta>
-        </visual>
-        <pose relative_to='aws_robomaker_residential_ChairD_01::__model__'>0 0 0 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>0.325214 4.10446 0 0 -0 -3.13874</pose>
-    </model>
-    <model name='ChairD_01_003'>
-      <frame name='aws_robomaker_residential_ChairD_01::__model__' attached_to='aws_robomaker_residential_ChairD_01::link'>
-        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
-      </frame>
-      <link name='aws_robomaker_residential_ChairD_01::link'>
-        <inertial>
-          <mass>4.5</mass>
-          <inertia>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyz>0</iyz>
-            <ixx>0.217</ixx>
-            <iyy>0.217</iyy>
-            <izz>0.067</izz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>file://models/aws_robomaker_residential_ChairD_01/meshes/aws_ChairD_01_collision.DAE</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>file://models/aws_robomaker_residential_ChairD_01/meshes/aws_ChairD_01_visual.DAE</uri>
-            </mesh>
-          </geometry>
-          <meta>
-            <layer>1</layer>
-          </meta>
-        </visual>
-        <pose relative_to='aws_robomaker_residential_ChairD_01::__model__'>0 0 0 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>-8.27078 -4.50446 0 0 -0 0.869673</pose>
-    </model>
     <model name='maze'>
       <pose>-0.078283 0.098984 0 0 -0 0</pose>
       <link name='Wall_0'>
@@ -645,174 +480,6 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <link name='Wall_24'>
-        <collision name='Wall_24_Collision'>
-          <geometry>
-            <box>
-              <size>1.5 0.15 2.5</size>
-            </box>
-          </geometry>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='Wall_24_Visual'>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>1.5 0.15 2.5</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <ambient>1 1 1 1</ambient>
-          </material>
-        </visual>
-        <pose>5.35089 3.21906 0 0 -0 3.14159</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <link name='Wall_25'>
-        <collision name='Wall_25_Collision'>
-          <geometry>
-            <box>
-              <size>5.25 0.15 2.5</size>
-            </box>
-          </geometry>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='Wall_25_Visual'>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>5.25 0.15 2.5</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <ambient>1 1 1 1</ambient>
-          </material>
-        </visual>
-        <pose>4.67589 5.76906 0 0 -0 1.5708</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <link name='Wall_27'>
-        <collision name='Wall_27_Collision'>
-          <geometry>
-            <box>
-              <size>5.5 0.15 2.5</size>
-            </box>
-          </geometry>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='Wall_27_Visual'>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>5.5 0.15 2.5</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <ambient>1 1 1 1</ambient>
-          </material>
-        </visual>
-        <pose>7.10914 4.73454 0 0 0 -1.5708</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <link name='Wall_28'>
-        <collision name='Wall_28_Collision'>
-          <geometry>
-            <box>
-              <size>3 0.15 2.5</size>
-            </box>
-          </geometry>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='Wall_28_Visual'>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>3 0.15 2.5</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <ambient>1 1 1 1</ambient>
-          </material>
-        </visual>
-        <pose>8.53414 2.05954 0 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
       <link name='Wall_3'>
         <collision name='Wall_3_Collision'>
           <geometry>
@@ -855,302 +522,152 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <link name='Wall_30'>
-        <collision name='Wall_30_Collision'>
-          <geometry>
-            <box>
-              <size>5.5 0.15 2.5</size>
-            </box>
-          </geometry>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='Wall_30_Visual'>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>5.5 0.15 2.5</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <ambient>1 1 1 1</ambient>
-          </material>
-        </visual>
-        <pose>-4.35914 -2.82889 0 0 0 -1.5708</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <link name='Wall_31'>
-        <collision name='Wall_31_Collision'>
-          <geometry>
-            <box>
-              <size>5.75 0.15 2.5</size>
-            </box>
-          </geometry>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='Wall_31_Visual'>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>5.75 0.15 2.5</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <ambient>1 1 1 1</ambient>
-          </material>
-        </visual>
-        <pose>-7.15914 -5.50389 0 0 -0 3.14159</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <link name='Wall_5'>
-        <collision name='Wall_5_Collision'>
-          <geometry>
-            <box>
-              <size>16 0.15 2.5</size>
-            </box>
-          </geometry>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='Wall_5_Visual'>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>16 0.15 2.5</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <ambient>1 1 1 1</ambient>
-          </material>
-        </visual>
-        <pose>-1.89911 1.86906 0 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <link name='Wall_6'>
-        <collision name='Wall_6_Collision'>
-          <geometry>
-            <box>
-              <size>1.5 0.15 2.5</size>
-            </box>
-          </geometry>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='Wall_6_Visual'>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>1.5 0.15 2.5</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <ambient>1 1 1 1</ambient>
-          </material>
-        </visual>
-        <pose>6.02589 2.54406 0 0 -0 1.5708</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <link name='Wall_8'>
-        <collision name='Wall_8_Collision'>
-          <geometry>
-            <box>
-              <size>0.15 0.15 2.5</size>
-            </box>
-          </geometry>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='Wall_8_Visual'>
-          <pose>0 0 1.25 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.15 0.15 2.5</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Grey</name>
-            </script>
-            <ambient>1 1 1 1</ambient>
-          </material>
-        </visual>
-        <pose>6.02589 3.21906 0 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
       <static>1</static>
     </model>
     <wind/>
     <state world_name='default'>
-      <sim_time>107 545000000</sim_time>
-      <real_time>109 864452001</real_time>
-      <wall_time>1735588894 61729077</wall_time>
-      <iterations>107545</iterations>
+      <sim_time>345 425000000</sim_time>
+      <real_time>153 200268863</real_time>
+      <wall_time>1736200517 629671494</wall_time>
+      <iterations>145614</iterations>
       <model name='ChairA_01_001'>
         <pose>7.11516 -0.406411 -4e-06 1.9e-05 2e-06 -1.55607</pose>
         <scale>1 1 1</scale>
         <link name='aws_robomaker_residential_ChairA_01::link'>
           <pose>7.11516 -0.406411 -4e-06 1.9e-05 2e-06 -1.55607</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.000137 -5e-06 -2.26342 -1.22232 0.499668 -3.14155</acceleration>
+          <acceleration>-0.000137 -5e-06 -2.26342 -1.22226 0.499666 -3.14155</acceleration>
           <wrench>-0.001024 -3.8e-05 -16.9757 0 -0 0</wrench>
         </link>
       </model>
-      <model name='ChairA_01_002'>
-        <pose>6.25506 -1.31914 -4e-06 1.9e-05 2e-06 -1.50414</pose>
+      <model name='ChairA_01_001_clone'>
+        <pose>2.00367 -2.16196 -4e-06 1.9e-05 2e-06 -1.55607</pose>
         <scale>1 1 1</scale>
         <link name='aws_robomaker_residential_ChairA_01::link'>
-          <pose>6.25506 -1.31914 -4e-06 1.9e-05 2e-06 -1.50414</pose>
+          <pose>2.00367 -2.16196 -4e-06 1.9e-05 2e-06 -1.55607</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.000136 -1.2e-05 -2.26342 1.57314 0.327382 -3.14155</acceleration>
-          <wrench>-0.00102 -9e-05 -16.9757 0 -0 0</wrench>
+          <acceleration>-0.000137 -5e-06 -2.26342 -1.22226 0.499666 -3.14155</acceleration>
+          <wrench>-0.001024 -3.8e-05 -16.9757 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ChairA_01_001_clone_0'>
+        <pose>-3.63864 -2.46661 -4e-06 1.9e-05 2e-06 -1.55607</pose>
+        <scale>1 1 1</scale>
+        <link name='aws_robomaker_residential_ChairA_01::link'>
+          <pose>-3.63864 -2.46661 -4e-06 1.9e-05 2e-06 -1.55607</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.000137 -5e-06 -2.26342 -1.22226 0.499666 -3.14155</acceleration>
+          <wrench>-0.001024 -3.8e-05 -16.9757 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ChairA_01_001_clone_1'>
+        <pose>6.4509 6.59262 -4e-06 1.9e-05 2e-06 -1.55607</pose>
+        <scale>1 1 1</scale>
+        <link name='aws_robomaker_residential_ChairA_01::link'>
+          <pose>6.4509 6.59262 -4e-06 1.9e-05 2e-06 -1.55607</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.000137 -5e-06 -2.26342 -1.22226 0.499666 -3.14155</acceleration>
+          <wrench>-0.001024 -3.8e-05 -16.9757 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ChairA_01_001_clone_2'>
+        <pose>5.23776 7.97332 -4e-06 1.9e-05 2e-06 1.67858</pose>
+        <scale>1 1 1</scale>
+        <link name='aws_robomaker_residential_ChairA_01::link'>
+          <pose>5.23776 7.97332 -4e-06 1.9e-05 2e-06 1.67858</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.000135 1.7e-05 -2.26342 2.50457 -0.088077 -3.14155</acceleration>
+          <wrench>0.001015 0.000131 -16.9757 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ChairA_01_001_clone_3'>
+        <pose>-7.30916 7.21124 -4e-06 1.9e-05 2e-06 2.46025</pose>
+        <scale>1 1 1</scale>
+        <link name='aws_robomaker_residential_ChairA_01::link'>
+          <pose>-7.30916 7.21124 -4e-06 1.9e-05 2e-06 2.46025</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>8.4e-05 0.00011 -2.26342 -1.75634 1.46504 -3.14155</acceleration>
+          <wrench>0.000632 0.000822 -16.9757 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ChairA_01_002'>
+        <pose>5.88727 -0.243917 -4e-06 1.9e-05 2e-06 -2.01331</pose>
+        <scale>1 1 1</scale>
+        <link name='aws_robomaker_residential_ChairA_01::link'>
+          <pose>5.88727 -0.243917 -4e-06 1.9e-05 2e-06 -2.01331</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.000126 5.6e-05 -2.26342 3.05633 1.0491 4.1e-05</acceleration>
+          <wrench>-0.000944 0.00042 -16.9757 0 -0 0</wrench>
         </link>
       </model>
       <model name='ChairA_01_003'>
-        <pose>5.36429 1.35096 0 7.9e-05 9.2e-05 1.57356</pose>
+        <pose>6.46272 1.77058 -4e-06 1.9e-05 2e-06 1.57356</pose>
         <scale>1 1 1</scale>
         <link name='aws_robomaker_residential_ChairA_01::link'>
-          <pose>5.36429 1.35096 0 7.9e-05 9.2e-05 1.57356</pose>
+          <pose>6.46272 1.77058 -4e-06 1.9e-05 2e-06 1.57356</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.000215 -2e-06 12.5055 -2.78046 1.18174 -3.12192</acceleration>
-          <wrench>-0.001613 -1.2e-05 93.791 0 -0 0</wrench>
+          <acceleration>0.000137 3e-06 -2.26342 1.86725 -0.518768 -3.14155</acceleration>
+          <wrench>0.001025 2.6e-05 -16.9757 0 -0 0</wrench>
         </link>
       </model>
       <model name='ChairA_01_004'>
-        <pose>7.43166 1.28219 -4e-06 1.9e-05 2e-06 1.52363</pose>
+        <pose>7.44426 1.31967 -4e-06 1.9e-05 2e-06 0.724075</pose>
         <scale>1 1 1</scale>
         <link name='aws_robomaker_residential_ChairA_01::link'>
-          <pose>7.43166 1.28219 -4e-06 1.9e-05 2e-06 1.52363</pose>
+          <pose>7.44426 1.31967 -4e-06 1.9e-05 2e-06 0.724075</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.000137 -3e-06 -2.26342 -1.72296 -0.515165 -3.14155</acceleration>
-          <wrench>0.001025 -2.4e-05 -16.9757 0 -0 0</wrench>
+          <acceleration>9.4e-05 -0.000101 -2.26342 1.95442 -1.13112 4e-05</acceleration>
+          <wrench>0.000708 -0.000757 -16.9757 0 -0 0</wrench>
         </link>
       </model>
       <model name='ChairA_01_005'>
-        <pose>-8.37446 1.18851 -5e-06 -2.5e-05 3e-06 -0.885951</pose>
+        <pose>-8.37446 1.18851 -4e-06 1.9e-05 2e-06 -0.885951</pose>
         <scale>1 1 1</scale>
         <link name='aws_robomaker_residential_ChairA_01::link'>
-          <pose>-8.37446 1.18851 -5e-06 -2.5e-05 3e-06 -0.885951</pose>
+          <pose>-8.37446 1.18851 -4e-06 1.9e-05 2e-06 -0.885951</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.00017 0.000166 0.178569 -2.20024 -0.176086 -0.000178</acceleration>
-          <wrench>0.001275 0.001245 1.33927 0 -0 0</wrench>
+          <acceleration>-0.000104 -9.1e-05 -2.26342 0.427113 0.216524 -3.14155</acceleration>
+          <wrench>-0.000783 -0.000679 -16.9757 0 -0 0</wrench>
         </link>
       </model>
-      <model name='ChairD_01_001'>
-        <pose>-1.38077 4.10446 -0.000249 -0 0.000976 -4e-06</pose>
+      <model name='KitchenTable_01_001'>
+        <pose>6.54296 0.928506 -2e-06 -1e-06 -7e-06 -1.80036</pose>
         <scale>1 1 1</scale>
-        <link name='aws_robomaker_residential_ChairD_01::link'>
-          <pose>-1.38077 4.10446 -0.000249 -0 0.000976 -4e-06</pose>
+        <link name='aws_robomaker_residential_KitchenTable_01::link'>
+          <pose>6.54296 0.928506 -2e-06 -1e-06 -7e-06 -1.80036</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.000259 0.002827 -7.13571 -1.18107 1.03007 0.024868</acceleration>
-          <wrench>-0.001165 0.012723 -32.1107 0 -0 0</wrench>
+          <acceleration>9e-06 3.6e-05 0.013088 -0.818099 -0.261493 3.2e-05</acceleration>
+          <wrench>0.00011 0.000448 0.160979 0 -0 0</wrench>
         </link>
       </model>
-      <model name='ChairD_01_002'>
-        <pose>0.325213 4.10445 -0.000249 0 0.000976 -3.13875</pose>
+      <model name='KitchenTable_01_001_clone'>
+        <pose>-2.67999 3.77634 -2e-06 -1e-06 -7e-06 -1.80036</pose>
         <scale>1 1 1</scale>
-        <link name='aws_robomaker_residential_ChairD_01::link'>
-          <pose>0.325213 4.10445 -0.000249 0 0.000976 -3.13875</pose>
+        <link name='aws_robomaker_residential_KitchenTable_01::link'>
+          <pose>-2.67999 3.77634 -2e-06 -1e-06 -7e-06 -1.80036</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.000267 -0.002827 -7.13571 1.18405 -1.06253 0.024869</acceleration>
-          <wrench>0.001201 -0.012719 -32.1107 0 -0 0</wrench>
+          <acceleration>9e-06 3.6e-05 -0.031517 -0.697004 -0.273744 3.2e-05</acceleration>
+          <wrench>0.000112 0.000448 -0.387659 0 -0 0</wrench>
         </link>
       </model>
-      <model name='ChairD_01_003'>
-        <pose>-8.27078 -4.50446 -0.000249 -0 0.000976 0.869669</pose>
+      <model name='KitchenTable_01_001_clone_0'>
+        <pose>5.36873 -5.42896 -1e-06 -1e-06 -7e-06 -1.80036</pose>
         <scale>1 1 1</scale>
-        <link name='aws_robomaker_residential_ChairD_01::link'>
-          <pose>-8.27078 -4.50446 -0.000249 -0 0.000976 0.869669</pose>
+        <link name='aws_robomaker_residential_KitchenTable_01::link'>
+          <pose>5.36873 -5.42896 -1e-06 -1e-06 -7e-06 -1.80036</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.002322 0.001625 -7.13571 -2.86748 0.06059 -3.11674</acceleration>
-          <wrench>-0.010448 0.007314 -32.1107 0 -0 0</wrench>
+          <acceleration>9e-06 3.8e-05 0.04069 -0.898787 -0.255128 3.3e-05</acceleration>
+          <wrench>0.000116 0.000461 0.50049 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='KitchenTable_01_001_clone_1'>
+        <pose>-5.4954 -6.04931 -2e-06 -1e-06 -7e-06 -1.80036</pose>
+        <scale>1 1 1</scale>
+        <link name='aws_robomaker_residential_KitchenTable_01::link'>
+          <pose>-5.4954 -6.04931 -2e-06 -1e-06 -7e-06 -1.80036</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>9e-06 3.6e-05 -0.031517 -0.697004 -0.273743 3.2e-05</acceleration>
+          <wrench>0.000112 0.000448 -0.387659 0 -0 0</wrench>
         </link>
       </model>
       <model name='ground_plane'>
@@ -1164,7 +681,7 @@
         </link>
       </model>
       <model name='maze'>
-        <pose>-0.078283 0.098984 0 0 -0 0</pose>
+        <pose>-0.078283 0.099 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='Wall_0'>
           <pose>-0.047747 10.024 0 0 -0 0</pose>
@@ -1184,67 +701,508 @@
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
-        <link name='Wall_24'>
-          <pose>5.27261 3.31804 0 0 -0 3.14159</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='Wall_25'>
-          <pose>4.59761 5.86804 0 0 -0 1.5708</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='Wall_27'>
-          <pose>7.03086 4.83352 0 0 0 -1.5708</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='Wall_28'>
-          <pose>8.45586 2.15852 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
         <link name='Wall_3'>
           <pose>-9.97274 0.098984 0 0 -0 1.5708</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
-        <link name='Wall_30'>
-          <pose>-4.43742 -2.72991 0 0 0 -1.5708</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='Wall_31'>
-          <pose>-7.23742 -5.40491 0 0 -0 3.14159</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='Wall_5'>
-          <pose>-1.97739 1.96804 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='Wall_6'>
-          <pose>5.94761 2.64304 0 0 -0 1.5708</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='Wall_8'>
-          <pose>5.94761 3.31804 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
       </model>
     </state>
+    <model name='ChairA_01_001_clone'>
+      <frame name='aws_robomaker_residential_ChairA_01::__model__' attached_to='aws_robomaker_residential_ChairA_01::link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <link name='aws_robomaker_residential_ChairA_01::link'>
+        <inertial>
+          <mass>7.5</mass>
+          <inertia>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+            <ixx>0.217</ixx>
+            <iyy>0.217</iyy>
+            <izz>0.067</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_collision.DAE</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose relative_to='aws_robomaker_residential_ChairA_01::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>2.00367 -2.16196 -3e-06 1.4e-05 1e-06 -1.55607</pose>
+    </model>
+    <model name='ChairA_01_001_clone_0'>
+      <frame name='aws_robomaker_residential_ChairA_01::__model__' attached_to='aws_robomaker_residential_ChairA_01::link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <link name='aws_robomaker_residential_ChairA_01::link'>
+        <inertial>
+          <mass>7.5</mass>
+          <inertia>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+            <ixx>0.217</ixx>
+            <iyy>0.217</iyy>
+            <izz>0.067</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_collision.DAE</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose relative_to='aws_robomaker_residential_ChairA_01::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-3.63864 -2.46661 -3e-06 1.4e-05 1e-06 -1.55607</pose>
+    </model>
+    <model name='ChairA_01_001_clone_1'>
+      <frame name='aws_robomaker_residential_ChairA_01::__model__' attached_to='aws_robomaker_residential_ChairA_01::link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <link name='aws_robomaker_residential_ChairA_01::link'>
+        <inertial>
+          <mass>7.5</mass>
+          <inertia>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+            <ixx>0.217</ixx>
+            <iyy>0.217</iyy>
+            <izz>0.067</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_collision.DAE</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose relative_to='aws_robomaker_residential_ChairA_01::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>6.4509 6.59262 -3e-06 1.4e-05 1e-06 -1.55607</pose>
+    </model>
+    <model name='ChairA_01_001_clone_2'>
+      <frame name='aws_robomaker_residential_ChairA_01::__model__' attached_to='aws_robomaker_residential_ChairA_01::link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <link name='aws_robomaker_residential_ChairA_01::link'>
+        <inertial>
+          <mass>7.5</mass>
+          <inertia>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+            <ixx>0.217</ixx>
+            <iyy>0.217</iyy>
+            <izz>0.067</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_collision.DAE</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose relative_to='aws_robomaker_residential_ChairA_01::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>5.23776 7.97332 -3e-06 1.4e-05 1e-06 -1.55607</pose>
+    </model>
+    <model name='ChairA_01_001_clone_3'>
+      <frame name='aws_robomaker_residential_ChairA_01::__model__' attached_to='aws_robomaker_residential_ChairA_01::link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <link name='aws_robomaker_residential_ChairA_01::link'>
+        <inertial>
+          <mass>7.5</mass>
+          <inertia>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+            <ixx>0.217</ixx>
+            <iyy>0.217</iyy>
+            <izz>0.067</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_collision.DAE</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_ChairA_01/meshes/aws_ChairA_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose relative_to='aws_robomaker_residential_ChairA_01::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-7.30916 7.21124 -3e-06 1.4e-05 1e-06 -1.55607</pose>
+    </model>
+    <model name='KitchenTable_01_001'>
+      <frame name='aws_robomaker_residential_KitchenTable_01::__model__' attached_to='aws_robomaker_residential_KitchenTable_01::link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <link name='aws_robomaker_residential_KitchenTable_01::link'>
+        <inertial>
+          <mass>12.3</mass>
+          <pose>0 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_KitchenTable_01/meshes/aws_KitchenTable_01_collision.DAE</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_KitchenTable_01/meshes/aws_KitchenTable_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose relative_to='aws_robomaker_residential_KitchenTable_01::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>6.55269 0.951173 -6e-06 0 -0 -1.56413</pose>
+    </model>
+    <model name='KitchenTable_01_001_clone'>
+      <frame name='aws_robomaker_residential_KitchenTable_01::__model__' attached_to='aws_robomaker_residential_KitchenTable_01::link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <link name='aws_robomaker_residential_KitchenTable_01::link'>
+        <inertial>
+          <mass>12.3</mass>
+          <pose>0 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_KitchenTable_01/meshes/aws_KitchenTable_01_collision.DAE</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_KitchenTable_01/meshes/aws_KitchenTable_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose relative_to='aws_robomaker_residential_KitchenTable_01::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-2.67999 3.77634 -2e-06 -1e-06 -7e-06 -1.80036</pose>
+    </model>
+    <model name='KitchenTable_01_001_clone_0'>
+      <frame name='aws_robomaker_residential_KitchenTable_01::__model__' attached_to='aws_robomaker_residential_KitchenTable_01::link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <link name='aws_robomaker_residential_KitchenTable_01::link'>
+        <inertial>
+          <mass>12.3</mass>
+          <pose>0 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_KitchenTable_01/meshes/aws_KitchenTable_01_collision.DAE</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_KitchenTable_01/meshes/aws_KitchenTable_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose relative_to='aws_robomaker_residential_KitchenTable_01::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>5.36873 -5.42896 -2e-06 -1e-06 -7e-06 -1.80036</pose>
+    </model>
+    <model name='KitchenTable_01_001_clone_1'>
+      <frame name='aws_robomaker_residential_KitchenTable_01::__model__' attached_to='aws_robomaker_residential_KitchenTable_01::link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <link name='aws_robomaker_residential_KitchenTable_01::link'>
+        <inertial>
+          <mass>12.3</mass>
+          <pose>0 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_KitchenTable_01/meshes/aws_KitchenTable_01_collision.DAE</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file://models/aws_robomaker_residential_KitchenTable_01/meshes/aws_KitchenTable_01_visual.DAE</uri>
+            </mesh>
+          </geometry>
+          <meta>
+            <layer>1</layer>
+          </meta>
+        </visual>
+        <pose relative_to='aws_robomaker_residential_KitchenTable_01::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-5.4954 -6.04931 -2e-06 -1e-06 -7e-06 -1.80036</pose>
+    </model>
   </world>
 </sdf>
