@@ -7,5 +7,8 @@ sudo apt install -y \
     ros-noetic-map-server \
     ros-noetic-amcl \
     ros-noetic-teleop-twist-keyboard \
+    ros-noetic-cv-bridge \
     ros-noetic-tf2-tools \
+    python3-opencv \
+    python3-numpy \
     ros-noetic-tf2-ros 
