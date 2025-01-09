@@ -1,13 +1,15 @@
 #!/usr/bin/env python
-
 import rospy
 import math
 import json
+import tf2_ros
+import tf2_geometry_msgs 
 from sensor_msgs.msg import LaserScan
 from nav_msgs.msg import OccupancyGrid
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import Twist, PoseStamped, Point
 from std_msgs.msg import String, ColorRGBA
 from visualization_msgs.msg import Marker, MarkerArray
+
 
 class ObjectMapper:
     def __init__(self):
@@ -39,6 +41,9 @@ class ObjectMapper:
             'chair': {'type': Marker.CYLINDER, 'scale': (0.4, 0.4, 0.5)},
             'diningtable': {'type': Marker.CUBE, 'scale': (0.8, 0.8, 0.4)}
         }
+
+        self.tf_buffer = tf2_ros.Buffer()
+        self.tf_listener = tf2_ros.TransformListener(self.tf_buffer)
         
         # State variables
         self.latest_scan = None
@@ -171,33 +176,29 @@ class ObjectMapper:
             self.finish_mapping()
             return
 
-        # Debug logging
-        rospy.loginfo(f"Laser scan data:")
-        rospy.loginfo(f"- Middle index: {middle_index}")
-        rospy.loginfo(f"- Raw distance: {distance}")
-        rospy.loginfo(f"- Angle min: {self.latest_scan.angle_min}")
-        rospy.loginfo(f"- Angle increment: {self.latest_scan.angle_increment}")
-        
-        angle = self.latest_scan.angle_min + (middle_index * self.latest_scan.angle_increment)
-        # Removed the angle negation
-        
-        rospy.loginfo(f"Calculated angle: {math.degrees(angle)} degrees")
-        
-        position = (
-            distance * math.cos(angle),
-            distance * math.sin(angle)
-        )
-        
-        rospy.loginfo(f"Calculated position: ({position[0]:.2f}, {position[1]:.2f})")
-        
-        object_type = self.target_object['class']
-        if not any(math.hypot(position[0] - p[0], position[1] - p[1]) < 0.5 
-                for p in self.mapped_objects[object_type]):
-            self.publish_marker(position, object_type)
-            self.mapped_objects[object_type].append(position)
-            rospy.loginfo(f"Mapped {object_type} at ({position[0]:.2f}, {position[1]:.2f})")
-        
-        self.finish_mapping()
+        # Create point in robot frame
+        point = PoseStamped()
+        point.header.frame_id = "base_link"
+        point.header.stamp = rospy.Time.now()
+        point.pose.position.x = distance
+        point.pose.position.y = 0
+        point.pose.position.z = 0
+        point.pose.orientation.w = 1.0
+
+        try:
+            transformed_point = self.tf_buffer.transform(point, "map", rospy.Duration(1.0))
+            position = (transformed_point.pose.position.x, transformed_point.pose.position.y)
+            
+            rospy.loginfo(f"Global position: ({position[0]:.2f}, {position[1]:.2f})")
+            self.publish_marker(position, self.target_object['class'])
+            self.mapped_objects[self.target_object['class']].append(position)
+            self.finish_mapping()
+            
+        except (tf2_ros.LookupException, tf2_ros.ConnectivityException, 
+                tf2_ros.ExtrapolationException) as e:
+            rospy.logwarn(f"Transform failed: {e}")
+            self.finish_mapping()
+            return
 
     def publish_marker(self, position, object_type):
         marker = Marker()
