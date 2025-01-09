@@ -1,10 +1,9 @@
-# explorer.py
 #!/usr/bin/env python
-
 import rospy
 import math
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
+from sensor_msgs.msg import LaserScan
 
 class Explorer:
     def __init__(self):
@@ -15,64 +14,91 @@ class Explorer:
         
         # Subscribers
         rospy.Subscriber('/object_mapper/state', String, self.state_callback)
+        rospy.Subscriber('/scan', LaserScan, self.scan_callback)
         
         # Parameters
-        self.angular_speed = rospy.get_param('~angular_speed', 0.2)
         self.linear_speed = rospy.get_param('~linear_speed', 0.2)
-        self.exploration_time = rospy.get_param('~exploration_time', 2.0)
+        self.angular_speed = rospy.get_param('~angular_speed', 0.1)
+        self.min_distance = rospy.get_param('~min_distance', 0.5)
         
         # State
         self.mapper_state = 'IDLE'
-        self.exploring = False
-        self.rotation_accumulated = 0.0
-        self.last_rotation_time = rospy.Time.now()
-        self.full_rotation_threshold = 2 * math.pi
+        self.latest_scan = None
+        self.current_direction = 1  # 1 for CCW, -1 for CW
         
     def state_callback(self, msg):
         self.mapper_state = msg.data
-        if self.mapper_state != 'IDLE':
-            self.exploring = False
+        
+    def scan_callback(self, msg):
+        self.latest_scan = msg
+    
+    def get_sector_distances(self):
+        """Get minimum distances in different sectors around the robot"""
+        if not self.latest_scan:
+            return None
             
+        ranges = self.latest_scan.ranges
+        size = len(ranges)
+        
+        # Define sectors (front, front-left, front-right)
+        sectors = {
+            'front': ranges[size//2-20:size//2+20],
+            'front_left': ranges[size//4-20:size//4+20],
+            'front_right': ranges[3*size//4-20:3*size//4+20]
+        }
+        
+        # Get minimum valid distance for each sector
+        min_distances = {}
+        for sector, measurements in sectors.items():
+            valid_ranges = [r for r in measurements if r != float('inf')]
+            min_distances[sector] = min(valid_ranges) if valid_ranges else float('inf')
+            
+        return min_distances
+
     def explore(self):
-        """Basic exploration strategy"""
+        """Circular exploration with wall avoidance"""
         if self.mapper_state != 'IDLE':
+            self.cmd_vel_pub.publish(Twist())
             return
             
-        if not self.exploring:
-            self.start_rotation()
-        else:
-            self.continue_rotation()
+        distances = self.get_sector_distances()
+        if not distances:
+            self.cmd_vel_pub.publish(Twist())
+            return
             
-    def start_rotation(self):
-        self.exploring = True
-        self.rotation_accumulated = 0.0
-        self.last_rotation_time = rospy.Time.now()
-        
-    def continue_rotation(self):
-        current_time = rospy.Time.now()
-        dt = (current_time - self.last_rotation_time).to_sec()
-        self.rotation_accumulated += self.angular_speed * dt
-        self.last_rotation_time = current_time
-        
-        if self.rotation_accumulated >= self.full_rotation_threshold:
-            self.move_forward()
-        else:
-            twist = Twist()
-            twist.angular.z = self.angular_speed
-            self.cmd_vel_pub.publish(twist)
-            
-    def move_forward(self):
-        """Move forward for a bit, then restart rotation"""
         twist = Twist()
+        
+        # Base circular movement
+        twist.angular.z = self.angular_speed * self.current_direction
         twist.linear.x = self.linear_speed
+        
+        # Wall avoidance logic
+        front_close = distances['front'] < self.min_distance
+        left_close = distances['front_left'] < self.min_distance
+        right_close = distances['front_right'] < self.min_distance
+        
+        if front_close:
+            # If wall directly ahead, reduce forward speed and turn more
+            twist.linear.x = self.linear_speed * 0.5
+            twist.angular.z = self.angular_speed * 1.5 * self.current_direction
+            rospy.loginfo(f"Wall ahead at {distances['front']}m, turning sharper")
+            
+        elif left_close and self.current_direction > 0:
+            # If wall on left and turning CCW, switch direction
+            self.current_direction = -1
+            twist.angular.z = self.angular_speed * self.current_direction
+            rospy.loginfo("Wall on left, switching to CW")
+            
+        elif right_close and self.current_direction < 0:
+            # If wall on right and turning CW, switch direction
+            self.current_direction = 1
+            twist.angular.z = self.angular_speed * self.current_direction
+            rospy.loginfo("Wall on right, switching to CCW")
+            
         self.cmd_vel_pub.publish(twist)
-        
-        rospy.Timer(rospy.Duration(self.exploration_time), 
-                   lambda _: self.start_rotation(), 
-                   oneshot=True)
-        
+
     def run(self):
-        rate = rospy.Rate(10)  # 10 Hz
+        rate = rospy.Rate(10)
         while not rospy.is_shutdown():
             self.explore()
             rate.sleep()

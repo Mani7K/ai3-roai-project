@@ -4,7 +4,7 @@
   <env name="GAZEBO_RESOURCE_PATH" value="$(find ai3-roai-project)/worlds" />
 
   <!-- arguments -->
-  <arg name="world_file" default="$(find ai3-roai-project)/worlds/maze_chairs.world" />
+  <arg name="world_file" default="$(find ai3-roai-project)/worlds/simple.world" />
   <arg name="gui" default="true" />
   <arg name="verbose" default="false" />
   <arg name="controller" default="true" />

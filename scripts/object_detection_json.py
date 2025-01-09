@@ -26,7 +26,7 @@ class TinyYoloClassifier:
             self.classes = [line.strip() for line in f.readlines()]
 
         self.layer_names = self.net.getLayerNames()
-        self.output_layers = [self.layer_names[i - 1] for i in self.net.getUnconnectedOutLayers()]
+        self.output_layers = self.net.getUnconnectedOutLayersNames()
 
         # Create a CvBridge for image conversion
         self.bridge = CvBridge()
@@ -42,8 +42,12 @@ class TinyYoloClassifier:
 
     def image_callback(self, data):
         try:
+            # rospy.loginfo("Received image")
+
             # Convert ROS Image message to OpenCV format
             cv_image = self.bridge.imgmsg_to_cv2(data, desired_encoding='bgr8')
+            # Print image dimensions (height, width, channels)
+            height, width, _ = cv_image.shape
 
             # Process the image for object detection
             self.classify_objects(cv_image)
@@ -69,14 +73,15 @@ class TinyYoloClassifier:
                     # Object detected
                     detected_class = self.classes[class_id]
                     if detected_class in self.target_objects:  # Check if target object is detected
-                        center_x = int(detection[0] * width)
-                        center_y = int(detection[1] * height)
+
+                        x = int(detection[0] * width)
+                        y = int(detection[1] * height)
                         w = int(detection[2] * width)
                         h = int(detection[3] * height)
 
                         # Rectangle coordinates
-                        x = int(center_x - w / 2)
-                        y = int(center_y - h / 2)
+                        # x = int(center_x - w / 2)
+                        # y = int(center_y - h / 2)
 
                         # Add detection to the results
                         detections.append({

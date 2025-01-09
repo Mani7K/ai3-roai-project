@@ -6,7 +6,7 @@
         command="$(find xacro)/xacro $(find ai3-roai-project)/mir100/mir.urdf.xacro" />
 
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen"
-        args="-param robot_description -urdf -model mir -x -3.5 -y -4.5 -z 0.1 -Y 1.58" />
+        args="-param robot_description -urdf -model mir -x 0 -y -4.5 -z 0.1 -Y 1" />
 
     <!-- Load ros_control controller configurations -->
     <rosparam file="$(find mir_description)/config/joint_state_controller.yaml" command="load" />

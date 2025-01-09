@@ -1,3 +1,0 @@
-<launch>
-    <node pkg="ai3-roai-project" type="exploration.py" name="exploration" output="screen"/>
-</launch>
