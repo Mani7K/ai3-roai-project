@@ -10,7 +10,6 @@ from geometry_msgs.msg import Twist, PoseStamped, Point
 from std_msgs.msg import String, ColorRGBA
 from visualization_msgs.msg import Marker, MarkerArray
 
-
 class ObjectMapper:
     def __init__(self):
         rospy.init_node('object_mapper')
@@ -41,7 +40,8 @@ class ObjectMapper:
             'chair': {'type': Marker.CYLINDER, 'scale': (0.4, 0.4, 0.5)},
             'diningtable': {'type': Marker.CUBE, 'scale': (0.8, 0.8, 0.4)}
         }
-
+        
+        # TF setup
         self.tf_buffer = tf2_ros.Buffer()
         self.tf_listener = tf2_ros.TransformListener(self.tf_buffer)
         
@@ -52,8 +52,9 @@ class ObjectMapper:
         self.state = 'IDLE'
         self.target_object = None
         self.marker_id = 0
+        self.processing_scan = False
 
-        # Add reorientation parameters
+        # Reorientation parameters
         self.reorient_angle = math.pi / 2  # 90 degrees
         self.rotation_accumulated = 0.0
         self.last_rotation_time = None
@@ -61,18 +62,13 @@ class ObjectMapper:
         # Centering timeout
         self.centering_timeout = rospy.Duration(30.0)
         self.centering_start_time = None
-
-        # Double marker fix
-        self.scan_processing_lock = False
-        self.last_processed_time = None
-        self.min_time_between_processing = rospy.Duration(0.5)  # 500ms between processing
         
         rospy.loginfo("Object mapper initialized")
 
     def laser_callback(self, scan_msg):
         self.latest_scan = scan_msg
-
-        if self.state == 'WAITING_FOR_SCAN' and not self.scan_processing_lock:
+        if self.state == 'WAITING_FOR_SCAN' and not self.processing_scan:
+            self.processing_scan = True
             self.process_centered_object()
 
     def map_callback(self, map_msg):
@@ -81,7 +77,6 @@ class ObjectMapper:
     def object_callback(self, obj_msg):
         if self.state in ['REORIENTING']:
             return
-
         if self.latest_scan is None or self.current_map is None:
             return
 
@@ -94,7 +89,6 @@ class ObjectMapper:
             ]
 
             if valid_detections and self.state == 'IDLE':
-                # Select closest object to center
                 self.target_object = min(
                     valid_detections,
                     key=lambda obj: abs(obj['bbox'][0] - self.image_center)
@@ -112,39 +106,8 @@ class ObjectMapper:
                         key=lambda obj: abs(obj['bbox'][0] - self.image_center)
                     )
                     self.center_on_object()
-
         except json.JSONDecodeError:
             rospy.logwarn("Invalid JSON from detector")
-
-    def finish_mapping(self):
-        """Start reorientation after mapping"""
-        self.state = 'REORIENTING'
-        self.rotation_accumulated = 0.0
-        self.last_rotation_time = rospy.Time.now()
-        self.publish_state()
-        rospy.loginfo("Starting reorientation")
-
-    def handle_reorientation(self):
-        """Handle the reorientation state"""
-        if self.last_rotation_time is None:
-            self.last_rotation_time = rospy.Time.now()
-            return
-
-        current_time = rospy.Time.now()
-        dt = (current_time - self.last_rotation_time).to_sec()
-        self.last_rotation_time = current_time
-
-        if self.rotation_accumulated < self.reorient_angle:
-            # Still rotating
-            twist = Twist()
-            reorientation_speed = self.angular_speed * 2
-            twist.angular.z = reorientation_speed
-            self.rotation_accumulated += abs(reorientation_speed) * dt
-            self.cmd_vel_pub.publish(twist)
-            rospy.loginfo(f"Reorienting: {math.degrees(self.rotation_accumulated):.1f} degrees")
-        else:
-            # Finished rotating, move forward
-            self.state = 'IDLE'
 
     def center_on_object(self):
         rospy.loginfo("Centering on object")
@@ -157,48 +120,53 @@ class ObjectMapper:
             rospy.loginfo(f"Error: {error}")
             twist.angular.z = self.angular_speed if error < 0 else -self.angular_speed
             self.cmd_vel_pub.publish(twist)
-            
         else:
             rospy.loginfo("Target centered")
-            # Stop and process the centered object
             self.state = 'WAITING_FOR_SCAN'
             self.cmd_vel_pub.publish(Twist())
 
     def process_centered_object(self):
-        if not self.latest_scan:
+        if not self.latest_scan or self.state != 'WAITING_FOR_SCAN':
+            self.processing_scan = False
             return
-
-        middle_index = len(self.latest_scan.ranges) // 2
-        distance = self.latest_scan.ranges[middle_index]
-        
-        if not math.isfinite(distance):
-            rospy.logwarn("Invalid distance reading")
-            self.finish_mapping()
-            return
-
-        # Create point in robot frame
-        point = PoseStamped()
-        point.header.frame_id = "base_link"
-        point.header.stamp = rospy.Time.now()
-        point.pose.position.x = distance
-        point.pose.position.y = 0
-        point.pose.position.z = 0
-        point.pose.orientation.w = 1.0
 
         try:
+            middle_index = len(self.latest_scan.ranges) // 2
+            distance = self.latest_scan.ranges[middle_index]
+            
+            if not math.isfinite(distance):
+                rospy.logwarn("Invalid distance reading")
+                self.processing_scan = False
+                self.finish_mapping()
+                return
+
+            point = PoseStamped()
+            point.header.frame_id = "base_link"
+            point.header.stamp = rospy.Time.now()
+            point.pose.position.x = distance
+            point.pose.position.y = 0
+            point.pose.position.z = 0
+            point.pose.orientation.w = 1.0
+
             transformed_point = self.tf_buffer.transform(point, "map", rospy.Duration(1.0))
             position = (transformed_point.pose.position.x, transformed_point.pose.position.y)
             
             rospy.loginfo(f"Global position: ({position[0]:.2f}, {position[1]:.2f})")
             self.publish_marker(position, self.target_object['class'])
             self.mapped_objects[self.target_object['class']].append(position)
-            self.finish_mapping()
+            
+            self.state = 'REORIENTING'
+            self.rotation_accumulated = 0.0
+            self.last_rotation_time = rospy.Time.now()
+            self.publish_state()
+            rospy.loginfo("Starting reorientation")
             
         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, 
                 tf2_ros.ExtrapolationException) as e:
             rospy.logwarn(f"Transform failed: {e}")
             self.finish_mapping()
-            return
+        finally:
+            self.processing_scan = False
 
     def publish_marker(self, position, object_type):
         marker = Marker()
@@ -222,26 +190,57 @@ class ObjectMapper:
         
         self.marker_pub.publish(MarkerArray(markers=[marker]))
 
+    def handle_reorientation(self):
+        """Handle the reorientation state"""
+        if self.last_rotation_time is None:
+            self.last_rotation_time = rospy.Time.now()
+            return
+            
+        current_time = rospy.Time.now()
+        dt = (current_time - self.last_rotation_time).to_sec()
+        self.last_rotation_time = current_time
+
+        if self.rotation_accumulated < self.reorient_angle:
+            # Still rotating
+            twist = Twist()
+            reorientation_speed = self.angular_speed * 2
+            twist.angular.z = reorientation_speed
+            self.rotation_accumulated += abs(reorientation_speed) * dt
+            self.cmd_vel_pub.publish(twist)
+            rospy.loginfo(f"Reorienting: {math.degrees(self.rotation_accumulated):.1f} degrees")
+        else:
+            # Finished rotating, move forward
+            self.state = 'IDLE'
+            self.target_object = None
+            self.publish_state()
+            rospy.loginfo("Reorientation complete")
+
+    def finish_mapping(self):
+        if self.state != 'REORIENTING':
+            self.state = 'REORIENTING'
+            self.rotation_accumulated = 0.0
+            self.last_rotation_time = rospy.Time.now()
+            self.publish_state()
+            rospy.loginfo("Starting reorientation")
+
     def publish_state(self):
         self.state_pub.publish(String(self.state))
 
     def run(self):
-        # rospy.spin()
         rate = rospy.Rate(10)
         while not rospy.is_shutdown():
             if self.state == 'REORIENTING':
                 self.handle_reorientation()
-            elif self.state == 'MOVING':
-                self.handle_moving()
+            
             if self.state == 'CENTERING':
                 if self.centering_start_time is None:
                     self.centering_start_time = rospy.Time.now()
                 elif (rospy.Time.now() - self.centering_start_time) > self.centering_timeout:
                     rospy.logwarn("Centering timeout reached, returning to IDLE")
-                    self.cmd_vel_pub.publish(Twist())  # Stop the robot
+                    self.cmd_vel_pub.publish(Twist())
                     self.state = 'IDLE'
                     self.centering_start_time = None
-            # rospy.loginfo(self.state)
+                    
             self.publish_state()
             rate.sleep()
 
