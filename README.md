@@ -28,20 +28,23 @@ After that, we can start the typical ros workflow:
 1. Navigate to `/home/fhtw_user/catkin_ws/`
 2. Run `catkin_make`
 3. `source devel/setup.bash`
-4. Start a world
-   - Option A: `roslaunch ai3-roai-project gazebo_small_house.launch`
-   - Option B: `roslaunch ai3-roai-project maze.launch`
-     - This is a small map with a few chairs, gazebo runs much smoother using this world
-5. `roslaunch ai3-roai-project slam.launch`
-   - This will launch an instance of the mapping node and a preconfigured rviz instance
-6. `roslaunch ai3-roai-project object_mapping.launch`
-   - This will start a node that explores and maps the world. it subscribes to the `/object_detection` topic and will place detected objects on the map
+4. `roslaunch ai3-roai-project environment.launch`
+    - This will start the environment
+    - load gazebo world
+        - Option A: gazebo_small_house\
+        Complex map containing multiple rooms and additional furniture
+        - Option B (default): simple\
+       This is a small map with a few chairs, gazebo runs much smoother using this world\
+       Ideal for demo purposes / testing
+    - Spawns the robot, brings up controllers, etc.
+5. `roslaunch ai3-roai-project object_mapping.launch`
+   - This will start a node that explores and maps the world. It subscribes to the `/object_detection` topic and will place detected objects on the map.
 
-You should now see a running gazebo instance, showing either the small_house or maze world including a mir100 with a camera (small red box) and a laser scanner (small red cylinder) mounted.
+You should now see a running gazebo instance, showing either the small_house or simple world including a mir100 with a camera (small red box) and a laser scanner (small red cylinder) mounted.
 
 The image gets published to the topic `/image_raw`. It can be visualized e.g. by using rviz.
 The laser scan data gets published to the topic `/scan`. It can be visualized using rviz as well.
-When launching the SLAM node a map is published to the topic `/map`, its visualized in the preconfigured rviz instance.
+When launching the SLAM node, a map is published to the topic `/map`, its visualized in the preconfigured rviz instance.
 
 #### Object Detection
 
