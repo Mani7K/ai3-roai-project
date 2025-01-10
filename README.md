@@ -1,5 +1,7 @@
 # AI3 ROAI Project
 
+> Jan Langela Regincos, Manuel Kubu, Florian Lederer, Wolfgang Wilke
+
 ## Task
 
 Perception involves a deep understanding of the environment. Today, mobile robots can infer the
