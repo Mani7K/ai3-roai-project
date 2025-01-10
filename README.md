@@ -1,5 +1,31 @@
 # AI3 ROAI Project
 
+## Task
+
+Perception involves a deep understanding of the environment. Today, mobile robots can infer the
+positions of objects from raw images. For example, when searching for a glass of water, the robot
+looks on tables rather than the floor or chairs. In this project, you will implement a simplified
+version of this process by creating a semantic map.
+
+To start, download an arbitrary Gazebo world containing multiple rooms with chairs and tables.
+Use the MiR100 robot to autonomously explore the environment and generate a semantic map
+using data from a camera (which you will need to attach to the robot) and a laser scanner. To
+create the semantic map, you can represent detected objects in RViz, using markers such as
+boxes. Publish the positions of these detected objects as a ROS topic.
+
+#### Image-Based Object Detection:
+
+Implement an image-based detector (e.g., CNN or Vision Transformer) to identify chairs and
+tables within camera frames. Use data from the laser scanner to estimate 3D coordinates of
+detected objects, adding positional accuracy for displaying objects on the map.
+
+#### Creating the Semantic Map:
+
+Use ROS’s mapping capabilities to generate a 2D occupancy grid of the environment from laser
+scan data, showing walls and room boundaries. Publish detected object positions and types (e.g.,
+“Chair” or “Table”) on a ROS topic. Display the generated map in RViz, visualizing each detected
+object as a marker within the mapped layout.
+
 ## Prerequisites
 
 - Docker-ROS https://github.com/TW-Robotics/Docker-ROS/tree/master
