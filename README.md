@@ -4,7 +4,7 @@
 
 - Docker-ROS https://github.com/TW-Robotics/Docker-ROS/tree/master
 
-## Startup
+## Setup
 
 This project represents a ros package.\
 When using the docker container described in prerequisites, clone/copy this repository into the `Docker-ROS/catkin_ws/src` directory.
@@ -29,22 +29,24 @@ After that, we can start the typical ros workflow:
 2. Run `catkin_make`
 3. `source devel/setup.bash`
 4. `roslaunch ai3-roai-project environment.launch`
-    - This will start the environment
-    - load gazebo world
-        - Option A: gazebo_small_house\
-        Complex map containing multiple rooms and additional furniture
-        - Option B (default): simple\
+   - This will start the environment
+   - load gazebo world
+     - Option A: gazebo_small_house\
+       Complex map containing multiple rooms and additional furniture
+     - Option B (default): simple\
        This is a small map with a few chairs, gazebo runs much smoother using this world\
        Ideal for demo purposes / testing
-    - Spawns the robot, brings up controllers, etc.
+   - Spawns the robot, brings up controllers, etc.
 5. `roslaunch ai3-roai-project object_mapping.launch`
-   - This will start a node that explores and maps the world. It subscribes to the `/object_detection` topic and will place detected objects on the map.
+   - This will start a node that explores and and a node that maps the world. The mapper subscribes to the `/object_detection` topic and will mark detected objects on the map.
 
 You should now see a running gazebo instance, showing either the small_house or simple world including a mir100 with a camera (small red box) and a laser scanner (small red cylinder) mounted.
 
 The image gets published to the topic `/image_raw`. It can be visualized e.g. by using rviz.
 The laser scan data gets published to the topic `/scan`. It can be visualized using rviz as well.
 When launching the SLAM node, a map is published to the topic `/map`, its visualized in the preconfigured rviz instance.
+
+![Map Overview](map.png)
 
 #### Object Detection
 
@@ -56,13 +58,57 @@ The object detection node publishes only if a chair or table is detected. The pu
     "class": "string",          // Detected object class
     "confidence": float,        // Confidence score (0.0 to 1.0)
     "bbox": [int, int, int, int] // Bounding box [x, y, width, height]
-  },
+  }
 ]
-  ...
 ```
 
-RVIZ Laserscan visualization example:
+It uses a yolov4-tiny model to predict object bounding boxes from an image.
 
-1. Add => RobotModel
-2. Global Options: Set `Fixed Frame` to `base_link`
-3. Add => LaserScan => Set `Topic` in the `LaserScan`-Tab to `/scan`
+### Explorer
+
+For Mapping we use Hector SLAM, this gave us better results than gmapping (Probably as it doesn't rely on odemetry).
+The Robot starts out Exploring the Terrain (Explorer Node). It Moves in a spiral, avoiding walls and obstacles on the way.
+When the detection Node detects an object with a certain confidence, The Explorer node enters the `IDLE` state and allows the mapper to center the detected object. Once the mapper enters its `IDLE` state the Explorer continues.
+
+```mermaid
+stateDiagram-v2
+    [*] --> EXPLORING
+    EXPLORING --> STOPPED: Mapper not IDLE
+    EXPLORING --> TURNING: Wall detected
+    TURNING --> EXPLORING: Clear path
+    STOPPED --> EXPLORING: Mapper returns to IDLE
+
+    note right of EXPLORING: Moving forward
+    note right of STOPPED: Waiting for mapper
+    note right of TURNING: Avoiding wall
+```
+
+### Mapper
+
+The Mapper Node subscribes to the detector node and waits for an object to be detected. Once an object is detected the mapper enters the `CENTERING` state. In this state the robot will rotate so that the detected object lies in the center of the camera image. Once the object is centered the mapper waits for a fresh LIDAR scan and then calculates its distance to the object using the LIDAR data. Next a Marker is published and the Mapper enters the `REOEIENTATION` state, where it turns 90 degrees and drives a bit ignoring detected objects on the way. this is done to prevent the robot from getting fixated on the same object over and over again. Finally the Mapper enters its `IDLE` state allowing the Explorer to take over again.
+
+```mermaid
+stateDiagram-v2
+    [*] --> IDLE
+    IDLE --> CENTERING: Object detected
+    CENTERING --> WAITING_FOR_SCAN: Object centered
+    WAITING_FOR_SCAN --> REORIENTING: Scan processed & marker placed
+    REORIENTING --> MOVING: 90° turn complete
+    MOVING --> IDLE: Move complete
+
+    note right of IDLE: Ready to detect objects
+    note right of CENTERING: Rotating to center object
+    note right of WAITING_FOR_SCAN: Getting fresh scan data
+    note right of REORIENTING: Turning 90 degrees
+    note right of MOVING: Moving forward
+```
+
+### Known Issues
+
+A list of issues and potential causes. Sadly we didnt have enough time to troubleshoot these yet.
+
+- Sometimes nothing happens upon launching the environment and mapper. When this happens restart both launches. We did not have time to troubleshoot this yet.
+- The maps corners are cut off, this may be due to a misconfiguration of hector slam.
+- Object marker position diverge from their real position. This may be due to a lack of transformation conversion
+
+The Detection/ Centering and Mapping work well, the main issue is the correct placement of markers
