@@ -2,6 +2,10 @@
 
 > Jan Langela Regincos, Manuel Kubu, Florian Lederer, Wolfgang Wilke
 
+## Disclaimer!
+
+**Due to the upload file size limit some of the assets were removed for the hand in. This means that `gazebo_small_house.launch` wont work and the simpler `environment.launch` should be used**
+
 ## Task
 
 Perception involves a deep understanding of the environment. Today, mobile robots can infer the
