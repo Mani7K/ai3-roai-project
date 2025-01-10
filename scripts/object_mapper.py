@@ -179,7 +179,6 @@ class ObjectMapper:
         rospy.loginfo(f"- Angle increment: {self.latest_scan.angle_increment}")
         
         angle = self.latest_scan.angle_min + (middle_index * self.latest_scan.angle_increment)
-        # Removed the angle negation
         
         rospy.loginfo(f"Calculated angle: {math.degrees(angle)} degrees")
         
